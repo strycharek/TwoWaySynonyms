@@ -1,0 +1,14 @@
+<div>
+  <h1>Add synonym</h1>
+  <form>
+      <div>
+          <label for="term">Term:</label>
+          <input type="text" id="term" [value]="term" (input)="term = $event.target.value" />
+      </div>
+      <div>
+          <label for="synonyms">Synonyms:</label>
+          <input type="text" id="synonyms"  [value]="synonyms" (input)="synonyms = $event.target.value" />
+      </div>
+      <button type="button" (click)="addRecord();">Save</button>
+  </form>
+ </div>

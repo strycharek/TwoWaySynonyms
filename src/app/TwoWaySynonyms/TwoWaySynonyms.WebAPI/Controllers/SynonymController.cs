@@ -34,11 +34,11 @@ namespace TwoWaySynonyms.WebAPI.Controllers
 
       
         [HttpPost]
-        public IActionResult SaveSyonyms(SynonymViewModel synonym)
+        public IActionResult SaveSyonyms([FromBody]SynonymViewModel synonym)
         {
-            if (string.IsNullOrEmpty(synonym.Term) || string.IsNullOrEmpty(synonym.Synonyms))
+            if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
             else
             {

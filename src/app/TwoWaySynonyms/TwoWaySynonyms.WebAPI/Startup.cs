@@ -34,6 +34,14 @@ namespace TwoWaySynonyms.WebAPI
             services.AddScoped<ISynonymService, SynonymService>();
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +57,9 @@ namespace TwoWaySynonyms.WebAPI
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("CorsPolicy");
             app.UseMvc();
+
         }
     }
 }
